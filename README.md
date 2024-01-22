@@ -2,8 +2,10 @@
 
 
 ## Usage
+In PyMOL,  
 ```
-pymol draw_funnel.py -- [reference pdb] [plumed input] [ligand name (3-letter)]
+run draw_funnel.py
+showfunnel [plumed input][ligand name(3-letters)]
 ```
 
 > [!note]

@@ -63,16 +63,14 @@ def draw_line(point1, point2, name):
     cmd.load_cgo(line, name)
     cmd.set("cgo_transparency", 0.0, name)
 
-def main():
+def main(filename, ligname='LIG'):
     help=f"""
-    Usage: 
-        pymol {sys.argv[0]} -- [reference pdb] [plumed input] [ligand name]
+    Usage:
+        In PyMOL,  
+        `run draw_funnel.py`
+        `showfunnel [plumed input][ligand name]`
     """
     print(help)
-    ref = sys.argv[1] 
-    filename = sys.argv[2] 
-    ligname = sys.argv[3]
-    cmd.load(f"{ref}")
 
     zcc, alpha, Rcyl, point1, point2 = read_plumed_input(filename)
     print(f"Zcc = {zcc}, alpha = {alpha}, Rcyl = {Rcyl}, Point1 = {point1}, Point 2 = {point2}")
@@ -92,4 +90,5 @@ def main():
     cmd.distance('lp', 'plig', 'pp')
     cmd.distance('ld', 'p1', 'pp')
 
-main()
+if __name__ == 'pymol':
+    cmd.extend("showfunnel", main)
